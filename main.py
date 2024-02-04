@@ -1,10 +1,13 @@
 from flask import Flask, render_template, request, redirect, url_for
+from send_mails import mail_attack
 
 app = Flask(__name__)
+
 
 @app.route('/')
 def index():
     return render_template('homePage.html')
+
 
 @app.route('/submit', methods=['POST'])
 def submit():
@@ -26,25 +29,45 @@ def submit():
             # Handle invalid option
             return "Invalid option selected"
 
+
 @app.route('/mail')
 def mail():
     # Code for mail attack
     return render_template('mails.html')
+
+
+@app.route('/submit-mail', methods=['POST'])
+def submit_mail():
+    # Code for mail attack
+    if request.method == 'POST':
+        message = "זכית בלוטו ב5,000,000 לקבלת הפרס מלא את הפרטים בלינק הבא : "
+        subject = "זכית בלוטו!!!"
+        mails_list = request.form['name-list']
+        mail_post = request.form['mail-post']
+        mails = mails_list.split(',')
+        for mail in mails:
+            mail = mail + '@' + mail_post
+            str = mail_attack(mail, subject, message)
+    return 'Form submitted successfully'  # Example response
+
 
 @app.route('/website')
 def website():
     # Code for website attack
     return render_template('website.html')
 
+
 @app.route('/message')
 def message():
     # Code for message attack
     return render_template('message.html')
 
+
 @app.route('/whatsapp')
 def whatsapp():
     # Code for WhatsApp attack
     return render_template('whatsapp.html')
+
 
 if __name__ == '__main__':
     app.run(debug=True)
