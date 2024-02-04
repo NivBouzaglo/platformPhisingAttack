@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mail Attack</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('https://th.bing.com/th/id/OIP.FEl6y1natQJXZDFKK53p0gHaEK?rs=1&pid=ImgDetMain'); /* Assuming the image is in the same directory */
+            background-size: cover;
+            margin: 0;
+            padding: 20px;
+        }
+        h2 {
+            color: #6B8EAE; /* Sky blue text */
+            color: #6B8EAE; /* Sky blue text */
+            margin-bottom: 30px; /* Increased margin */
+        }
+
+        label {
+            display: block;
+            margin-bottom: 20px; /* Increased margin */
+            color: #6B8EAE; /* Sky blue text */
+        }
+
+        input[type="text"] {
+            width: calc(100% - 24px); /* Adjusted width */
+            padding: 8px; /* Reduced padding */
+            border: 1px solid #6B8EAE; /* Sky blue border */
+            border-radius: 5px;
+            color: #6B8EAE; /* Sky blue text */
+            margin-bottom: 20px; /* Increased margin */
+        }
+
+        input[type="submit"] {
+            background-color: #6B8EAE; /* Sky blue button */
+            color: #ffffff; /* White text */
+            border: none;
+            padding: 10px 20px; /* Adjusted padding */
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #6B8EAE; /* Darker blue on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Mail Attack</h2>
+        <!-- Your content here -->
+        <form action="/submit-mail" method="post">
+            <label for="name-list">List of Names (separated by commas):</label>
+            <input type="text" id="name-list" name="name-list" required>
+
+            <label for="mail-post">Mail Post of the Company:</label>
+            <input type="text" id="mail-post" name="mail-post" required>
+
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+</body>
+</html>

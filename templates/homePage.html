@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phishing Attack Options</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #333333; /* Black mate background */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: url('https://th.bing.com/th/id/OIP.FEl6y1natQJXZDFKK53p0gHaEK?rs=1&pid=ImgDetMain'); /* Assuming the image is in the same directory */
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        h1 {
+            color: #ffffff; /* sky blue title */
+            margin-bottom: 20px;
+        }
+        .option-btn {
+            background-color: #6B8EAE; /* sky blue */
+            color: #ffffff; /* White text */
+            border: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-bottom: 15px;
+            transition: background-color 0.3s;
+            width: 100%;
+            max-width: 300px;
+        }
+        .option-btn:hover {
+            background-color: #555555; /* Darker gray on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Phishing Attack Options</h1>
+        <button class="option-btn" onclick="selectOption('mail')">Mail Attack 📧</button>
+        <button class="option-btn" onclick="selectOption('website')">Website Attack 🌐</button>
+        <button class="option-btn" onclick="selectOption('message')">Message Attack 💬</button>
+        <button class="option-btn" onclick="selectOption('whatsapp')">WhatsApp Attack 📱</button>
+    </div>
+
+    <form id="attack-form" action="/submit" method="post" style="display: none;">
+        <input type="hidden" id="attack-type" name="attack_type">
+    </form>
+
+    <script>
+        function selectOption(option) {
+            document.getElementById('attack-type').value = option;
+            document.getElementById('attack-form').submit();
+        }
+    </script>
+</body>
+</html>
