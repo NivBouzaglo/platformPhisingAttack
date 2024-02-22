@@ -7,7 +7,13 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-image: url('https://th.bing.com/th/id/OIP.FEl6y1natQJXZDFKK53p0gHaEK?rs=1&pid=ImgDetMain'); /* Assuming the image is in the same directory */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-image: url('https://cdn.gencraft.com/prod/user/3049276d-c8f5-4e1e-aef4-4a55a9eefcba/fcdbaabb-68bb-4fd1-8c2a-882cb4c8e394/image/image0_0.jpg?Expires=1716401296&Signature=LtGGZhlT519Gurq7iKL0c52I9CLV5b8LirrkPuXIxt9A-8yYPEJnYt-lxvQMFEkc4dHBLTPthgy13xH3ibxCawFDgW4asEkX1Sx16h5miBl9DM0hOQOxgdnFJHe0Sgp-pEFqBd3b3~IozK3qjmfyZ4Y9N5PymoXGeTYIbzUdvde3QTCVnVRyYXJY0XwIc63cnCw4aDaLBCbLBRh5V~yLA-LE8~nyBEzViDocRyoDf7wTTtGv4WGPJun9OUCoKtQf~R8I-VHawyBx8of~mg0SE9~WY9w4qvifu67-N4HqJWttd617aAbEj6h-2SNPFtLLxCD7hhfgMxZNgC0S6rGcww__&Key-Pair-Id=K3RDDB1TZ8BHT8'); /* Assuming the image is in the same directory */
             background-size: cover;
             margin: 0;
             padding: 20px;
@@ -45,21 +51,22 @@
         input[type="submit"]:hover {
             background-color: #6B8EAE; /* Darker blue on hover */
         }
+
     </style>
 </head>
 <body>
-    <div class="container">
-        <h2>Mail Attack</h2>
-        <!-- Your content here -->
-        <form action="/submit-mail" method="post">
-            <label for="name-list">List of Names (separated by commas):</label>
-            <input type="text" id="name-list" name="name-list" required>
+<div class="container">
+    <h2>Mail Attack</h2>
+    <!-- Your content here -->
+    <form action="/submit-mail" method="post">
+        <label for="name-list">List of Names (separated by commas):</label>
+        <input type="text" id="name-list" name="name-list" required>
 
-            <label for="mail-post">Mail Post of the Company:</label>
-            <input type="text" id="mail-post" name="mail-post" required>
+        <label for="mail-post">Mail Post of the Company:</label>
+        <input type="text" id="mail-post" name="mail-post" required>
 
-            <input type="submit" value="Submit">
-        </form>
-    </div>
+        <input type="submit" value="Submit">
+    </form>
+</div>
 </body>
 </html>
