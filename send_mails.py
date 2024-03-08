@@ -13,6 +13,8 @@ try:
 
     from email.mime.base import MIMEBase
     from email import encoders
+    from main import msg,subject
+
 except:
     os.system("""
     apt install pip2
@@ -22,7 +24,7 @@ except:
     """)
 
 
-def mail_attack(mail_target, subject, msg):
+def mail_attack(mail_target):
     SSL = 465
     sender = "i2625644@gmail.com"
     phonenumber = "uvis nimf jlnt hsch"

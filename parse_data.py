@@ -5,7 +5,6 @@ from plotly.subplots import make_subplots
 import plotly.subplots as ps
 employees_data = []
 
-    
 def show_data_per_department(output_file):
     """"""
     global employees_data
@@ -100,10 +99,3 @@ def parse_data_from_json():
             print(row)
 
         go_statistics()
-
-
-
-
-
-if __name__ == "__main__":
-    parse_data_from_json()

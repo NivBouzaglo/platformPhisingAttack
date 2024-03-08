@@ -1,7 +1,10 @@
-from flask import Flask, render_template, request, redirect, url_for
-from send_mails import mail_attack
+from flask import Flask, render_template, request, redirect, url_for,flash
 
 app = Flask(__name__)
+
+msg = "זכית בזוג כרטיסים לקבלת הפרס מלא את הפרטים בלינק הבא :\n"
+msg = "https://ticketsforyou.000webhostapp.com/ " + msg
+subject = "זכית!!!"
 
 
 @app.route('/')
@@ -18,16 +21,25 @@ def submit():
             return redirect(url_for('mail'))
         elif attack_type == 'website':
             # Execute code for website attack
-            return redirect(url_for('website'))
+            return redirect('website')
         elif attack_type == 'message':
             # Execute code for message attack
             return redirect(url_for('message'))
         elif attack_type == 'whatsapp':
             # Execute code for WhatsApp attack
             return redirect(url_for('whatsapp'))
+        elif attack_type == 'showdata':
+            # Execute code for WhatsApp attack
+            return showdata()
         else:
             # Handle invalid option
             return "Invalid option selected"
+
+def showdata():
+    from parse_data import parse_data_from_json
+
+    parse_data_from_json()
+    return render_template('homePage.html')
 
 
 @app.route('/mail')
@@ -38,17 +50,17 @@ def mail():
 
 @app.route('/submit-mail', methods=['POST'])
 def submit_mail():
+
+    from send_mails import mail_attack
     # Code for mail attack
     if request.method == 'POST':
-        message = "זכית בלוטו ב5,000,000 לקבלת הפרס מלא את הפרטים בלינק הבא : "
-        subject = "זכית בלוטו!!!"
         mails_list = request.form['name-list']
         mail_post = request.form['mail-post']
         mails = mails_list.split(',')
         for mail in mails:
             mail = mail + '@' + mail_post
-            str = mail_attack(mail, subject, message)
-    return 'Form submitted successfully'  # Example response
+            str = mail_attack(mail)
+    return redirect(url_for('mail'))
 
 
 @app.route('/website')
@@ -57,10 +69,39 @@ def website():
     return render_template('website.html')
 
 
+@app.route('/submit-whatsapp', methods=['POST'])
+def submit_whatsapp():
+
+    from whatsapp_attack import whatsapp_atk_using_twilio
+
+    # Code for mail attack
+    if request.method == 'POST':
+        mobile_numbers = request.form['mobile-numbers']
+        numbers = mobile_numbers.split(',')
+        for mobile in numbers:
+            whatsapp_atk_using_twilio(mobile)
+
+    return redirect(url_for('whatsapp'))
+
+
+
 @app.route('/message')
 def message():
     # Code for message attack
     return render_template('message.html')
+
+@app.route('/submit-message', methods=['POST'])
+def submit_message():
+
+    from sms_sender import send_sms
+
+    # Code for mail attack
+    if request.method == 'POST':
+        mobile_numbers = request.form['mobile-numbers']
+        numbers = mobile_numbers.split(',')
+        for mobile in numbers:
+            send_sms(mobile)
+    return redirect(url_for('message'))
 
 
 @app.route('/whatsapp')

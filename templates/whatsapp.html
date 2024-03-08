@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WhatsApp Attack</title>
+    <title>Message Whatsapp</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -19,7 +19,7 @@
             padding: 20px;
         }
         h2 {
-            color: #3CB371; /* Light red text */
+            color: #6B8EAE; /* Light red text */
             margin-bottom: 30px; /* Increased margin */
         }
 
@@ -29,13 +29,15 @@
             color: #6B8EAE; /* Light red text */
         }
 
-        input[type="text"] {
-            width: calc(100% - 24px); /* Adjusted width */
+        textarea {
+            width: calc(100% - 1px); /* Adjusted width */
             padding: 8px; /* Reduced padding */
-            border: 1px solid #ffffff; /* Light red border */
+            border: 1px solid #006400; /* Light red border */
             border-radius: 5px;
             color: #6B8EAE; /* Light red text */
             margin-bottom: 20px; /* Increased margin */
+            resize: vertical; /* Allow vertical resizing */
+            height: 100px; /* Initial height */
         }
 
         input[type="submit"] {
@@ -54,17 +56,14 @@
 </head>
 <body>
     <div class="container">
-        <h2>WhatsApp Attack</h2>
+        <h2>Whatsapp Attack</h2>
         <!-- Your content here -->
         <form action="/submit-whatsapp" method="post">
-            <label for="message-content">Message Content:</label>
-            <input type="text" id="message-content" name="message-content" required>
-
             <label for="mobile-numbers">Mobile Numbers (separated by commas):</label>
-            <input type="text" id="mobile-numbers" name="mobile-numbers" required>
+            <textarea id="mobile-numbers" name="mobile-numbers" required></textarea>
 
-<input type="submit" value="Send WhatsApp Message">
-</form>
-</div>
+            <input type="submit" value="Send Whatsapp Message">
+        </form>
+    </div>
 </body>
 </html>
