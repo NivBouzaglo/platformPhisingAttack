@@ -1,11 +1,20 @@
+
 from flask import Flask, render_template, request, redirect, url_for,flash
 
+import webbrowser
+from threading import Timer
+
+
 app = Flask(__name__)
+
 
 msg = "זכית בזוג כרטיסים לקבלת הפרס מלא את הפרטים בלינק הבא :\n"
 msg = "https://ticketsforyou.000webhostapp.com/ " + msg
 subject = "זכית!!!"
 
+
+
+num_of_emp = 0
 
 @app.route('/')
 def index():
@@ -35,10 +44,11 @@ def submit():
             # Handle invalid option
             return "Invalid option selected"
 
-def showdata():
-    from parse_data import parse_data_from_json
 
-    parse_data_from_json()
+def showdata():
+    from statistics import show_statistics
+
+    show_statistics()
     return render_template('homePage.html')
 
 
@@ -53,10 +63,13 @@ def submit_mail():
 
     from send_mails import mail_attack
     # Code for mail attack
+    global num_of_emp
+
     if request.method == 'POST':
         mails_list = request.form['name-list']
         mail_post = request.form['mail-post']
         mails = mails_list.split(',')
+        num_of_emp = len(mails)
         for mail in mails:
             mail = mail + '@' + mail_post
             str = mail_attack(mail)
@@ -75,9 +88,12 @@ def submit_whatsapp():
     from whatsapp_attack import whatsapp_atk_using_twilio
 
     # Code for mail attack
+    global num_of_emp
+
     if request.method == 'POST':
         mobile_numbers = request.form['mobile-numbers']
         numbers = mobile_numbers.split(',')
+        num_of_emp = len(numbers)
         for mobile in numbers:
             whatsapp_atk_using_twilio(mobile)
 
@@ -96,9 +112,11 @@ def submit_message():
     from sms_sender import send_sms
 
     # Code for mail attack
+    global num_of_emp
     if request.method == 'POST':
         mobile_numbers = request.form['mobile-numbers']
         numbers = mobile_numbers.split(',')
+        num_of_emp = len(numbers)
         for mobile in numbers:
             send_sms(mobile)
     return redirect(url_for('message'))
@@ -110,5 +128,12 @@ def whatsapp():
     return render_template('whatsapp.html')
 
 
+def open_browser():
+    webbrowser.open_new("http://127.0.0.1:5000")
+
+
 if __name__ == '__main__':
-    app.run(debug=True)
+    Timer(1, open_browser).start()
+    # app.run(debug=True)
+
+    app.run()
