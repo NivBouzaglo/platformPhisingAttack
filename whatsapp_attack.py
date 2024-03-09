@@ -31,17 +31,17 @@ def whatsapp_atk(mobile):
 def whatsapp_atk_using_twilio(mobile):
     from twilio.rest import Client
 
-
     account_sid = 'AC43d6ce649a8a890029c156a58803b346'
     auth_token = 'a426345baf7c7e7fe46ebca6d75a2fc7'
     client = Client(account_sid, auth_token)
 
-    message = client.messages.create(
+    message = client.messages \
+        .create(
+        body=msg,
+        media_url=['https://demo.twilio.com/owl.png'],
         from_='whatsapp:+14155238886',
-        body= msg,
         to='whatsapp:'+mobile
     )
 
     print(message.sid)
 
-    # """ ********************************************** """

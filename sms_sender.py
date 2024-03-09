@@ -15,7 +15,7 @@ def send_sms(mobile):
 
     message = client.messages.create(
         from_='+12403398347',
-        body= msg,
+        body=msg,
         to=mobile
     )
 
