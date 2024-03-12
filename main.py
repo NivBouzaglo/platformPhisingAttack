@@ -86,7 +86,6 @@ def website():
 def submit_whatsapp():
 
     from whatsapp_attack import whatsapp_atk_using_twilio
-    from whatsapp_attack import whatsapp_atk
 
     # Code for mail attack
     global num_of_emp
@@ -96,7 +95,7 @@ def submit_whatsapp():
         numbers = mobile_numbers.split(',')
         num_of_emp = len(numbers)
         for mobile in numbers:
-            whatsapp_atk(mobile)
+            whatsapp_atk_using_twilio(mobile)
 
     return redirect(url_for('whatsapp'))
 
@@ -135,4 +134,6 @@ def open_browser():
 
 if __name__ == '__main__':
     Timer(1, open_browser).start()
+    # app.run(debug=True)
+
     app.run()

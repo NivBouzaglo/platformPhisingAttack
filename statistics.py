@@ -13,10 +13,10 @@ def arrange_by_department():
     x = []
     y = []
     for emp in data_arr:
-        if emp['Department'] in departments.keys():
-            departments[emp['Department']] += 1
+        if emp['department'] in departments.keys():
+            departments[emp['department']] += 1
         else:
-            departments[emp['Department']] = 1
+            departments[emp['department']] = 1
     return [k for k in departments.keys()], [v for v in departments.values()]
 
 
@@ -26,9 +26,13 @@ def go_statistics():
     global data_arr
 
     failed_emp = len(data_arr)
-
-    x1 = ['Succeed', 'Failed']
-    y1 = [num_of_emp - failed_emp, failed_emp]
+    succeeded_emp = num_of_emp - failed_emp
+    if succeeded_emp < 0 :
+        x1 = ['Failed']
+        y1 = [failed_emp]
+    else:
+        x1 = ['Succeed', 'Failed']
+        y1 = [succeeded_emp, failed_emp]
     x2, y2 = arrange_by_department()
 
     fig = make_subplots(rows=2, cols=1)
@@ -57,17 +61,18 @@ def go_statistics():
 
 def parse_data(file_path):
     global data_arr
-    with open(file_path, 'r') as file:
-        current_dict = {}
+    with open(file_path, 'r', encoding="utf8") as file:
         for line in file.readlines():
-            if line.startswith("{"):
+            current_dict = {}
+            if "Name" in line:
                 # Parse the JSON string into a dictionary
-                line = line.strip()[1:-1]
+                line = line.strip()
                 fields = line.split(",")
                 for f in fields:
-                    f = f.split(":")
+                    f = f.strip(' ').split(":")
                     current_dict[f[0].strip('"')] = f[1].strip('"')
                 data_arr.append(current_dict)
+        print(data_arr)
 
 
 
@@ -78,7 +83,7 @@ def show_statistics():
 
     parse_data(file_path)
 
-    os.remove(file_path)
-
+    # os.remove(file_path)
+    #
     go_statistics()
 
